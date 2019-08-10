@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="85" id="KGk-i7-Jjw" customClass="TodoTableViewCell" customModule="TodoApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="347" height="85"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="347" height="84.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFi-ka-57v">
+                        <rect key="frame" x="16" y="8" width="315" height="68.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxo-cZ-y0f" userLabel="Task name">
+                                <rect key="frame" x="46" y="8" width="229" height="52.5"/>
+                                <string key="text">Nguyen Le Trong Nhan         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { [weak self] (action, indexPath) in
+            self?.deleteTask(index: indexPath.row)
+        }</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhd-FQ-XF7" userLabel="select button">
+                                <rect key="frame" x="0.0" y="11.5" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="JM2-Yo-IPi"/>
+                                    <constraint firstAttribute="height" constant="46" id="arp-2W-RXz"/>
+                                </constraints>
+                                <state key="normal" image="icon_button_active"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feQ-VA-xNi" userLabel="Delete button">
+                                <rect key="frame" x="283" y="22.5" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="goQ-oP-LrE"/>
+                                    <constraint firstAttribute="width" constant="24" id="t8m-4L-KWb"/>
+                                </constraints>
+                                <state key="normal" image="icon_button_delete"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="feQ-VA-xNi" firstAttribute="leading" secondItem="kxo-cZ-y0f" secondAttribute="trailing" constant="8" id="0iX-Rg-3zl"/>
+                            <constraint firstAttribute="trailing" secondItem="feQ-VA-xNi" secondAttribute="trailing" constant="8" id="1za-fj-DkK"/>
+                            <constraint firstItem="kxo-cZ-y0f" firstAttribute="top" secondItem="CFi-ka-57v" secondAttribute="top" constant="8" id="8PJ-pP-oOU"/>
+                            <constraint firstItem="kxo-cZ-y0f" firstAttribute="leading" secondItem="qhd-FQ-XF7" secondAttribute="trailing" id="UQv-IU-pdR"/>
+                            <constraint firstAttribute="bottom" secondItem="kxo-cZ-y0f" secondAttribute="bottom" constant="8" id="XMa-as-rwe"/>
+                            <constraint firstItem="qhd-FQ-XF7" firstAttribute="leading" secondItem="CFi-ka-57v" secondAttribute="leading" id="b7J-4L-diG"/>
+                            <constraint firstItem="feQ-VA-xNi" firstAttribute="centerY" secondItem="qhd-FQ-XF7" secondAttribute="centerY" id="gOy-2f-YGd"/>
+                            <constraint firstItem="qhd-FQ-XF7" firstAttribute="centerY" secondItem="kxo-cZ-y0f" secondAttribute="centerY" id="yGl-xe-KF9"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="CFi-ka-57v" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="CZL-gk-pip"/>
+                    <constraint firstAttribute="trailing" secondItem="CFi-ka-57v" secondAttribute="trailing" constant="16" id="Hbc-oX-Zlw"/>
+                    <constraint firstItem="CFi-ka-57v" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ZTU-tM-xlU"/>
+                    <constraint firstAttribute="bottom" secondItem="CFi-ka-57v" secondAttribute="bottom" constant="8" id="fTZ-OG-3Qc"/>
+                </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                        <real key="value" value="0.0"/>
+                    </userDefinedRuntimeAttribute>
+                </userDefinedRuntimeAttributes>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="deleteButton" destination="feQ-VA-xNi" id="9gW-wb-aM9"/>
+                <outlet property="selectButton" destination="qhd-FQ-XF7" id="fwc-lw-piD"/>
+                <outlet property="todoNameLabel" destination="kxo-cZ-y0f" id="Mcj-08-BUC"/>
+            </connections>
+            <point key="canvasLocation" x="-57.24637681159421" y="125.55803571428571"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_button_active" width="24" height="24"/>
+        <image name="icon_button_delete" width="24" height="24"/>
+    </resources>
+</document>
