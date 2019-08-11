@@ -23,6 +23,8 @@ class TodoListViewModel: NSObject, TodoListProtocol {
     var showActive = BehaviorRelay<Bool>(value: false)
     var showDone = BehaviorRelay<Bool>(value: false)
     
+    var viewDidLoadTrigger = PublishRelay<Void>()
+    
     let disposeBag = DisposeBag()
     
     func addTodo(text: String) {
@@ -57,6 +59,10 @@ class TodoListViewModel: NSObject, TodoListProtocol {
         viewModel?.updateStatus()
         
         self.reloadTableTrigger.accept(())
+        
+        if let model = viewModel?.model {
+            DatabaseService.updateItemToDB(item: model)
+        }
     }
     
     func toggleAllButtonTrigged() {
@@ -107,7 +113,7 @@ class TodoListViewModel: NSObject, TodoListProtocol {
         
         getListToto()
         configureObserable()
-        
+        configureStartupStatus()
     }
     
     func configureObserable() {
@@ -134,11 +140,20 @@ class TodoListViewModel: NSObject, TodoListProtocol {
     }
     
     func getListToto() {
-
+        
         DatabaseService.getAllTodo { [weak self] (items) in
             guard let self = self else { return }
             self.todoList.accept([TaskSectionType(header: "", items: items)])
             self.todoListFiltered.accept([TaskSectionType(header: "", items: items)])
         }
+    }
+    
+    func configureStartupStatus() {
+        
+        viewDidLoadTrigger
+            .subscribe(onNext: { [weak self] (_) in
+                self?.showAll.accept(true)
+        })
+        .disposed(by: disposeBag)
     }
 }

@@ -30,4 +30,6 @@ protocol TodoListProtocol {
     var showAll: BehaviorRelay<Bool> { get }
     var showActive: BehaviorRelay<Bool> { get }
     var showDone: BehaviorRelay<Bool> { get }
+    
+    var viewDidLoadTrigger: PublishRelay<Void> { get }
 }

@@ -18,6 +18,7 @@ class TodoTableViewCell: UITableViewCell, NibReusable {
     @IBOutlet weak var todoNameLabel: UILabel!
     @IBOutlet weak var selectButton: UIButton!
     
+    @IBOutlet weak var statusLabel: UILabel!
     var disposeBag = DisposeBag()
     
     override func awakeFromNib() {
@@ -27,9 +28,20 @@ class TodoTableViewCell: UITableViewCell, NibReusable {
     }
     
     func configureCell(viewModel: TodoItemViewModel) {
-        todoNameLabel.text = viewModel.name
+        
         selectButton.isSelected = viewModel.isChecked
         todoNameLabel.textColor = viewModel.textColor
+        statusLabel.text = viewModel.status
+        
+        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: viewModel.name)
+        if viewModel.model.status == .done {
+            
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+            
+        } else {
+            todoNameLabel.text = viewModel.name
+        }
+        todoNameLabel.attributedText = attributeString
     }
     
     override func prepareForReuse() {

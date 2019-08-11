@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import Reusable
+import SVProgressHUD
 
 struct TaskSectionType {
     var header: String
@@ -52,10 +53,17 @@ class TodoListViewController: UIViewController, NibOwnerLoadable {
     @IBOutlet weak var textField: UITextField!
     typealias RxDatasource = RxTableViewSectionedAnimatedDataSource<TaskSectionType>
     
+    @IBOutlet weak var emptyView: UIView!
+    
+    @IBOutlet weak var emptyButton: UIButton!
+    
     lazy var datasource = self.makeDatasource()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        defer {
+            viewModel.viewDidLoadTrigger.accept(())
+        }
         configureView()
         configureActions()
     }
@@ -65,7 +73,7 @@ class TodoListViewController: UIViewController, NibOwnerLoadable {
     lazy var viewModel = TodoListViewModel()
     
     func configureView() {
-        title = "Todo List"
+
         navigationController?.navigationBar.isHidden = false
         let nav = self.navigationController?.navigationBar
         
@@ -74,7 +82,17 @@ class TodoListViewController: UIViewController, NibOwnerLoadable {
         nav?.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
         
-        showAllButton.isSelected = true
+        emptyView.isHidden = true
+        
+        toggleAllButton.styleForButton()
+        showAllButton.styleForButton()
+        activeButton.styleForButton()
+        doneButton.styleForButton()
+        
+        emptyButton.styleForButton()
+        emptyButton.isSelected = true
+        
+        toggleAllButton.titleLabel?.adjustsFontSizeToFitWidth = true
         configureTableView()
         configureTextField()
     }
@@ -111,6 +129,18 @@ class TodoListViewController: UIViewController, NibOwnerLoadable {
                 viewModel.showDoneButtonTrigged()
             })
             .disposed(by: disposeBag)
+        
+        emptyButton
+            .rx
+            .tap
+            .subscribe(onNext: { [unowned self] (_) in
+                self.textField.becomeFirstResponder()
+            })
+            .disposed(by: disposeBag)
+        
+        emptyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(emptyViewDidTap)))
+        tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(emptyViewDidTap)))
+        
     }
     
     func configureTextField() {
@@ -126,12 +156,14 @@ class TodoListViewController: UIViewController, NibOwnerLoadable {
         tableView.sectionHeaderHeight = 0
         tableView.separatorStyle = .none
         
-        tableView.rx.itemSelected
-        .asDriver()
+        tableView
+            .rx
+            .itemSelected
+            .asDriver()
             .drive(onNext: { [weak self] (indexPath) in
                 self?.tableView.deselectRow(at: indexPath, animated: true)
             })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
         
@@ -141,6 +173,14 @@ class TodoListViewController: UIViewController, NibOwnerLoadable {
         
         viewModel
             .todoListFiltered
+            .skip(1)
+            .do(onNext: { [weak self] (sections) in
+                if sections[0].items.count > 0 {
+                    self?.emptyView.isHidden = true
+                } else {
+                    self?.emptyView.isHidden = false
+                }
+            })
             .bind(to: tableView.rx.items(dataSource: datasource))
             .disposed(by: disposeBag)
         
@@ -220,6 +260,11 @@ class TodoListViewController: UIViewController, NibOwnerLoadable {
                 return datasource.sectionModels[index].header
             }
         )
+    }
+    
+    @objc
+    func emptyViewDidTap() {
+        textField.resignFirstResponder()
     }
 }
 

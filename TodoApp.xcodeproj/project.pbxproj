@@ -152,17 +152,9 @@
 			isa = PBXGroup;
 			children = (
 				69F261C422FEC350009F2798 /* UIButtonExtension.swift */,
-				69F261C522FEC350009F2798 /* Classes */,
 				69F261C622FEC350009F2798 /* UIImageExtension.swift */,
 			);
 			path = DTGradientButton;
-			sourceTree = "<group>";
-		};
-		69F261C522FEC350009F2798 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		8E0FBBFD7AD80B8DB94402C6 /* Frameworks */ = {

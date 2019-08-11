@@ -53,6 +53,7 @@ class TodoItemViewModel: Equatable, IdentifiableType {
     
     var model: TodoItemModel
     var name: String = ""
+    var status: String = ""
     var isChecked: Bool = false
     var textColor: UIColor = .black
     
@@ -64,15 +65,19 @@ class TodoItemViewModel: Equatable, IdentifiableType {
             textColor = .black
         } else {
             isChecked = true
-            textColor = .gray
+            textColor = UIColor(red: 102/255, green: 102/255, blue: 102/255, alpha: 1)
         }
+        status = model.status.description
     }
     
     func updateStatus() {
         if model.status == .active {
             isChecked = false
+            textColor = .black
         } else {
             isChecked = true
+            textColor = UIColor(red: 102/255, green: 102/255, blue: 102/255, alpha: 1)
         }
+        status = model.status.description
     }
 }
