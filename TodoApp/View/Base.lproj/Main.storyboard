@@ -86,9 +86,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2e-El-YiV">
-                                                <rect key="frame" x="136.5" y="268" width="141" height="40"/>
+                                                <rect key="frame" x="148" y="268" width="118" height="36"/>
                                                 <color key="backgroundColor" red="0.16078431369999999" green="0.52941176469999995" blue="0.99215686270000003" alpha="0.99780607880000005" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                                 <state key="normal" title="CREATE TASK"/>
                                                 <state key="selected" title="CREATE TASK"/>

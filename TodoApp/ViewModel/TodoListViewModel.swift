@@ -85,6 +85,8 @@ class TodoListViewModel: NSObject, TodoListProtocol {
         self.toggleAll.accept(!toggleAll.value)
         self.todoList.accept([TaskSectionType(header: "", items: items)])
         self.todoListFiltered.accept([TaskSectionType(header: "", items: itemsFilter)])
+        let todoItems = itemsFilter.map { $0.model }
+        DatabaseService.updateItemsToDB(items: todoItems)
     }
     
     func showAllButtonTrigged() {

@@ -47,6 +47,12 @@ class DatabaseService {
     static func updateItemToDB(item: TodoItemModel) {
         DatabaseService.referenceDB().child("TodoList").child(item.id).updateChildValues(["todostatus" : item.status.rawValue])
     }
+    
+    static func updateItemsToDB(items: [TodoItemModel]) {
+        for item in items {
+            DatabaseService.updateItemToDB(item: item)
+        }
+    }
 }
 
 
